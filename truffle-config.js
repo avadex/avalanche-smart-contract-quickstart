@@ -43,10 +43,17 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
- development: {
-  host: "https://api.avax-test.network/",     // Localhost (default: none)
-  port:443,            // Standard Ethereum port (default: none)
-  network_id: "*",       // Any network (default: none)
+ development: { provider: () => new HDWalletProvider (mnemonic, `http://localhost:9650/ext/bc/C/rpc`),
+  host: "localhost",     // Localhost (default: none)
+  port:9650,            // Standard Ethereum port (default: none)
+  network_id: "1",       // Any network (default: none)
+  gas: 3000000,
+  gasPrice: 225000000000,
+  websocket: true,       // Enable EventEmitter interface for web3 (default: false)
+   confirmations:5,    // # of confs to wait between deployments. (default: 0)
+   timeoutBlocks: 50,  // # of blocks before a deployment times out  (minimum/default: 50)
+   skipDryRun: true,     // Skip dry run before migrations? (default: false for public nets )
+    production: true
  },
     // Another network with more advanced options...
   //advanced: {
@@ -58,7 +65,7 @@ module.exports = {
     // },
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
- Fuji: { provider: () => new HDWalletProvider(mnemonic, `https://api.avax-test.network/ext/bc/C/rpc`),
+ fuji: { provider: () => new HDWalletProvider(mnemonic, `https://api.avax-test.network/ext/bc/C/rpc`),
  network_id: 1,       // Ropsten's id
  gas: 3000000,
  gasPrice: 225000000000,        // Ropsten has a lower block limit than mainnet
@@ -125,3 +132,5 @@ bytecodeHash: 'none',
     enabled: false
   }
 };
+
+
